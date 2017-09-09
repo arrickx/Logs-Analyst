@@ -5,7 +5,7 @@
 3. On which days did more than 1% of requests lead to errors?
 
 ## Getting Started
-* You can *[clone](TODO)* or *[download](TODO)* this project via [GitHub](https://github.com) to your local machine.
+* You can *[clone](https://github.com/arrickx/Logs-Analyst.git)* or *[download](https://github.com/arrickx/Logs-Analyst.git)* this project via [GitHub](https://github.com) to your local machine.
 
 ### Prerequisites
 You will need to install these following application in order to make this code work.
