@@ -10,17 +10,17 @@ cur = conn.cursor()
 # create templates for the PostgreSQL that can make it easier to read
 answer1 = ("select articles.title, count(*) as views "
            "from articles join log "
-           "on log.path like concat('%', articles.slug, '%') "
-           "where log.status like '%200%' "
+           "on log.path like concat('/article/', articles.slug) "
+           "where log.status = '200 OK' "
            "group by articles.title "
            "order by views "
            "desc limit 3;")
 answer2 = ("select name, count(*) as views "
            "from articles "
            "inner join log on log.path "
-           "like concat('%', articles.slug, '%') "
+           "like concat('/article/', articles.slug) "
            "inner join authors on authors.id = articles.author "
-           "where log.status like '%200%' "
+           "where log.status = '200 OK' "
            "group by name "
            "order by views "
            "desc;")
@@ -37,8 +37,8 @@ rows = cur.fetchall()
 print "What are the most popular three articles of all time? " + '\n'
 for row in rows:
     # format it to be more readable
-    print str(row[0]), '-', str(row[1]), 'views'
-print '\n'  # add a linebreak
+    print （str(article), '-', str(views), 'views'）
+print （'\n'）  # add a linebreak
 
 # this execute the second query and runs it
 cur.execute(answer2)
@@ -47,8 +47,8 @@ rows = cur.fetchall()
 print "Who are the most popular article authors of all time? " + '\n'
 for row in rows:
     # format it to be more readable
-    print str(row[0]), '-', str(row[1]), 'views'
-print '\n'
+    print （str(name), '-', str(views), 'views'）
+print （'\n'）
 
 # this execute the third query and runs it
 cur.execute(answer3)
@@ -57,8 +57,8 @@ rows = cur.fetchall()
 print "On which days did more than 1% of requests lead to errors? " + '\n'
 for row in rows:
     # format it to be more readable
-    print str(row[0]), '-', str(row[1]) + '% errors'
-print '\n'  # add a linebreak
+    print （str(date), '-', str(percent) + '% errors'）
+print （'\n'）  # add a linebreak
 
 # this close the communication with the PostgreSQL
 cur.close()

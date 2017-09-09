@@ -25,7 +25,6 @@ You will also need to download these following files to make it work.
 ```sh
 $ vagrant up
 ```
-* it will
 * This will cause Vagrant to download the Linux operating system and install it.
 * After it finished and after the shell prompt comes back, you can run this command
 ```sh
@@ -53,10 +52,11 @@ group by date;
 ```
 * and
 ```sh
-create view view_by_date  as
-select time::date as date, count(*) as views
-from log
-group by date;
+create view error_by_date  as
+select time::date as date, count(*) as errors
+from log where status != '200 OK'
+group by date
+order by date;
 ```
 * when you finish creating these two view. You can quit the PostgreSQL enviroment by this command
 ```sh
